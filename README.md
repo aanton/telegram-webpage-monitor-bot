@@ -23,6 +23,7 @@ See a [Telegram bot that monitors a feed](https://github.com/aanton/telegram-fee
 * Function used to extract the snippet from the webpage html
   * The function received a parameter, it is a function provided by [cheerio](https://cheerio.js.org/) that provides an API similar than jQuery
   * See examples below
+* [Telegram message options](https://core.telegram.org/bots/api#sendmessage) to enable HTML/Markdown format, disable links preview, ...
 
 ## Usage
 
@@ -31,10 +32,42 @@ See a [Telegram bot that monitors a feed](https://github.com/aanton/telegram-fee
 
 ## Examples of "extractSnippet" function
 
-* Extract the first link containing the string `/article/` inside the #content block
+* The first link containing the string `/article/` inside the #content block
 
 ```js
 "extractSnippet": function($) {
   return $("#content a[href*='/article/']").first().attr("href");
+}
+```
+
+* A list of links included in a `nav#links`. Also configure Markdown format & disable links preview
+
+```js
+"telegramMessageOptions": {
+  parse_mode: "Markdown",
+  disable_web_page_preview: true
+},
+"extractSnippet": function($) {
+  const $items = $('nav#links a');
+  if ($items.length === 0) return "";
+
+  const items = [];
+  $items.each(function(index, element) {
+    const $item = $(this);
+    const title = $item.text().trim();
+    const href = $item.attr('href');
+
+    if (title && href) {
+      items.push({
+        title: title,
+        href: href.replace(/\?utm_.+/, '')
+      });
+    }
+  });
+
+  const snippet = '*Items list*\n' + items.map(function(item) {
+    return '- ' + item.title + ': ' + item.href;
+  }).join('\n');
+  return snippet;
 }
 ```

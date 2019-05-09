@@ -40,11 +40,13 @@ async function checkSnippetsHasChanged(snippet) {
 
 async function postMessage(snippet) {
   const url = 'https://api.telegram.org/bot' + config.telegramBotToken + '/sendMessage';
-  const response = await axios.post(url, {
+  let params = {
     chat_id: config.telegramChatId,
     text: snippet
-  });
+  };
+  Object.assign(params, config.telegramMessageOptions);
 
+  const response = await axios.post(url, params);
   return response.data;
 }
 
