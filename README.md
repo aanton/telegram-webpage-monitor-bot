@@ -30,44 +30,65 @@ See a [Telegram bot that monitors a feed](https://github.com/aanton/telegram-fee
 * Run `node index.js` manually to verify it is working properly
 * Run it periodically using a crontab or a similar tool
 
-## Examples of "extractSnippet" function
+## Configuration examples
 
-* The first link containing the string `/article/` inside the #content block
+### Snippet created getting a link
+
+* Rule: the first link containing `/article/` that is inside the `#content` block
+* The link will be previewed in Telegram (the default behaviour when sending a message with a link)
 
 ```js
-"extractSnippet": function($) {
-  return $("#content a[href*='/article/']").first().attr("href");
+const config = {
+  "webpage": "",
+  "telegramBotToken": "",
+  "telegramChatId": "",
+  "telegramMessageOptions": {},
+  "extractSnippet": function($) {
+    return $("#content a[href*='/article/']").first().attr("href");
+  }
 }
+
+module.exports = config;
 ```
 
-* A list of links included in a `nav#links`. Also configure Markdown format & disable links preview
+### Snippet created getting a list of links
+
+* Rule: all links inside the `nav#links` blocks
+* The message is sent in Markdown format & links preview is disabled
 
 ```js
-"telegramMessageOptions": {
-  parse_mode: "Markdown",
-  disable_web_page_preview: true
-},
-"extractSnippet": function($) {
-  const $items = $('nav#links a');
-  if ($items.length === 0) return "";
+const config = {
+  "webpage": "",
+  "telegramBotToken": "",
+  "telegramChatId": "",
+  "telegramMessageOptions": {
+    parse_mode: "Markdown",
+    disable_web_page_preview: true
+  },
+  "extractSnippet": function($) {
+    const $items = $('nav#links a');
+    if ($items.length === 0) return "";
 
-  const items = [];
-  $items.each(function(index, element) {
-    const $item = $(this);
-    const title = $item.text().trim();
-    const href = $item.attr('href');
+    const items = [];
+    $items.each(function(index, element) {
+      const $item = $(this);
+      const title = $item.text().trim();
+      const href = $item.attr('href');
 
-    if (title && href) {
-      items.push({
-        title: title,
-        href: href.replace(/\?utm_.+/, '')
-      });
-    }
-  });
+      if (title && href) {
+        items.push({
+          title: title,
+          href: href
+        });
+      }
+    });
 
-  const snippet = '*Items list*\n' + items.map(function(item) {
-    return '- ' + item.title + ': ' + item.href;
-  }).join('\n');
-  return snippet;
+    const snippet = '*Items list*\n' + items.map(function(item) {
+      return '- ' + item.title + ': ' + item.href;
+    }).join('\n');
+    return snippet;
+  }
 }
+
+module.exports = config;
 ```
