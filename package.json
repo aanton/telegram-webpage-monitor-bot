@@ -1,0 +1,17 @@
+{
+  "name": "telegram-webpage-monitor-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot that monitors a block of a webpage",
+  "main": "index.js",
+  "keywords": [
+    "telegram",
+    "bot"
+  ],
+  "author": "Armando Antón (https://github.com/aanton)",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.3",
+    "log-timestamp": "^0.3.0"
+  }
+}
