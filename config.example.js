@@ -1,11 +1,11 @@
 const config = {
-  "webpage": "",
-  "telegramBotToken": "",
-  "telegramChatId": "",
-  "telegramMessageOptions": {},
-  "extractSnippet": function($) {
+  webpage: '',
+  telegramBotToken: '',
+  telegramChatId: '',
+  telegramMessageOptions: {},
+  extractSnippet: function($) {
     // see https://cheerio.js.org/
-    return "";
+    return '';
   }
 }
 
