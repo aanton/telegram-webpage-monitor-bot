@@ -54,5 +54,6 @@ getWebPage()
   .then(extractSnippet)
   .then(checkSnippetsHasChanged)
   .then(postMessage)
+  .then(JSON.stringify)
   .then(console.log)
   .catch(console.log);
