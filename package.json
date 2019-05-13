@@ -2,6 +2,7 @@
   "name": "@aanton/telegram-webpage-monitor-bot",
   "version": "1.0.0",
   "description": "Telegram bot that monitors a block/snippet of a webpage",
+  "repository": "aanton/telegram-webpage-monitor-bot",
   "main": "index.js",
   "keywords": [
     "telegram",
