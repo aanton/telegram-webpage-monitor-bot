@@ -1,8 +1,5 @@
 # @aanton/telegram-webpage-monitor-bot
 
-![npm (scoped)](https://img.shields.io/npm/v/@aanton/telegram-webpage-monitor-bot.svg)
-![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@aanton/telegram-webpage-monitor-bot.svg)
-
 Monitors a webpage detecting when a predefined block/snippet has changed & sends a message to a Telegram chat using a Telegram bot.
 
 ## Installation
