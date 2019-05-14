@@ -41,5 +41,6 @@ monitorWebpage({
 * `telegramChatId`: Telegram chat identifier
   * It can be a private conversation with the bot (you must send previously a message to the bot), a group conversation (the bot must be a member) or a channel conversation (the bot must be an administrator member)
   * The chat identifier can be obtained using [@ChannelIdBot](https://t.me/ChannelIdBot)
-* `telegramSendMessageOptions`: [Telegram message options](https://core.telegram.org/bots/api#sendmessage) to enable HTML/Markdown format, disable links preview, ...
+* `telegramSendMessageOptions`: Optional [telegram message options](https://core.telegram.org/bots/api#sendmessage)
+  * Use it for enable HTML/Markdown format, disable links preview or disable notifications
 * `extractSnippet`: Function that extracts the snippet from the webpage HTML

@@ -9,7 +9,8 @@ async function monitorWebpage(config) {
   const storage = config.storage;
   const telegramBotToken = config.telegramBotToken;
   const telegramChatId = config.telegramChatId;
-  const telegramSendMessageOptions = config.telegramSendMessageOptions;
+  const telegramSendMessageOptions = 'telegramSendMessageOptions' in config ?
+    config.telegramSendMessageOptions : [];
 
   async function getWebPage() {
     const response = await axios.get(url);
