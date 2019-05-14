@@ -1,6 +1,6 @@
 # @aanton/telegram-webpage-monitor-bot
 
-Monitors a webpage detecting when a predefined block/snippet has changed & sends a message to a Telegram chat using a Telegram bot.
+Monitors a webpage detecting when a custom block/snippet has changed & sends a message to a Telegram chat using a Telegram bot.
 
 ## Installation
 
@@ -33,9 +33,9 @@ monitorWebpage({
 
 ### Configuration parameters
 
-* `name`: Unique name
+* `name`: Unique name, used in logs
 * `url`: Webpage URL to monitor
-* `url`: Local storage to store the block/snippet created from the webpage using the `extractSnippet` function
+* `url`: Local storage to save the block/snippet extracted from the webpage using the `extractSnippet` function
 * `telegramBotToken`: Telegram bot token
   * Create a [Telegram bot](https://core.telegram.org/bots) using [BotFather](https://telegram.me/botfather)
 * `telegramChatId`: Telegram chat identifier
