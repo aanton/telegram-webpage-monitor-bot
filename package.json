@@ -14,6 +14,6 @@
   "author": "Armando Antón (https://github.com/aanton)",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.24.0"
+    "axios": "^1.6.0"
   }
 }
